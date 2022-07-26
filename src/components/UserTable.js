@@ -5,6 +5,7 @@ import { useUsers } from "../api/user";
 import EditUserRoleModal from "./EditUserRoleModal";
 import { useProfile } from "../api/profile";
 import Spinner from "./Spinner";
+import toast from "react-hot-toast";
 
 const UserTable = () => {
   const [editOpen, setEditOpen] = useState(false);
@@ -77,17 +78,24 @@ const UserTable = () => {
                         </div>
                       </td>
                       <td className="px-6 py-4">
-                        {profile?._id !== user._id && (
-                          <div className="text-sm leading-5 text-gray-900">
-                            <FaUserEdit
-                              onClick={() => {
-                                setSelectedUser(user);
-                                setEditOpen(true);
-                              }}
-                              className="text-blue-400 text-2xl cursor-pointer hover:text-blue-500"
-                            />
-                          </div>
-                        )}
+                        <div className="text-sm leading-5 text-gray-900">
+                          <FaUserEdit
+                            onClick={() => {
+                              if (profile?._id === user._id) {
+                                return toast.error(
+                                  "You cannot edit your own role"
+                                );
+                              }
+                              setSelectedUser(user);
+                              setEditOpen(true);
+                            }}
+                            className={`text-2xl cursor-pointer ${
+                              profile?._id === user._id
+                                ? "text-gray-400 cursor-not-allowed"
+                                : "text-blue-400 hover:text-blue-500"
+                            }`}
+                          />
+                        </div>
                       </td>
                     </tr>
                   ))}

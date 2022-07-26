@@ -66,7 +66,7 @@ const MobileNavBar = ({ filteredNavItems, onSignOut, role, openModal }) => {
           <div>
             <Menu.Button className="text-yellow-600 font-bold flex items-center gap-1">
               {`Welcome ${
-                profile.role === "admin"
+                profile.firstName === "Admin"
                   ? "Admin"
                   : `${profile.firstName} ${profile.lastName}`
               }`}
@@ -164,7 +164,7 @@ const NavBar = () => {
               <div>
                 <Menu.Button className="text-yellow-600 flex items-center gap-1">
                   {`Welcome ${
-                    profile.role === "admin"
+                    profile.firstName === "Admin"
                       ? "Admin"
                       : `${profile.firstName} ${profile.lastName}`
                   }`}

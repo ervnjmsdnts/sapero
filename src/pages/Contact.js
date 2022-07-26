@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import Input from "../components/Input";
 import TextArea from "../components/TextArea";
 
@@ -6,6 +6,9 @@ import Profile1 from "../assets/images/profile1.png";
 import Profile2 from "../assets/images/profile2.jpg";
 import Profile3 from "../assets/images/profile3.jpg";
 import Portfolio from "../components/Portfolio";
+import { useForm } from "react-hook-form";
+import emailjs from "emailjs-com";
+import toast from "react-hot-toast";
 
 const profiles = [
   {
@@ -50,9 +53,44 @@ const profiles = [
 ];
 
 const Contact = () => {
+  const { register, handleSubmit, reset } = useForm();
+
+  const onSubmit = useCallback(
+    async (data, e) => {
+      e.preventDefault();
+
+      try {
+        const { name, email, message } = data;
+
+        const templateParams = {
+          from_name: name,
+          email,
+          to_name: "Kodego Bootcamp",
+          subject: "Contact Form",
+          message: message,
+        };
+
+        await emailjs.send(
+          "service_mvnx08v",
+          "template_bvafuy2",
+          templateParams,
+          "tgcVHFJrc5-Nnyvlf"
+        );
+
+        toast.success("Message sent successfully!");
+        reset();
+      } catch (error) {
+        console.log(error);
+        toast.error("Something went wrong");
+      }
+    },
+    [reset]
+  );
   return (
     <div className="py-8">
-      <section className="flex flex-col justify-center items-center gap-8 mt-10">
+      <form
+        onSubmit={handleSubmit((data, e) => onSubmit(data, e))}
+        className="flex flex-col justify-center items-center gap-8 mt-10">
         <div className="flex flex-col text-2xl text-center font-semibold text-white">
           <h3>Love to hear from you,</h3>
           <h3>Get in touch</h3>
@@ -60,17 +98,20 @@ const Contact = () => {
         <div className="flex flex-col h-full md:flex-row items-start gap-4">
           <div className="flex flex-col gap-4">
             <Input
+              {...register("name")}
               className="w-72"
               label="Name"
               placeholder="Enter your name..."
             />
             <Input
+              {...register("email")}
               className="w-72"
               label="Email"
               placeholder="Enter your email..."
             />
           </div>
           <TextArea
+            {...register("message")}
             className="w-72 h-32"
             label="Message"
             placeholder="Enter your message..."
@@ -79,8 +120,8 @@ const Contact = () => {
         <button className="py-2 px-4 bg-yellow-600 hover:bg-yellow-500 text-white rounded-full font-semibold">
           Send message
         </button>
-      </section>
-      <section className="flex flex-col items-center gap-8 mt-20">
+      </form>
+      <section className="flex flex-col items-center gap-8 mt-32">
         <h3 className="text-2xl font-semibold text-white">
           Lovely to meet our team
         </h3>

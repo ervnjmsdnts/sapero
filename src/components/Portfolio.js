@@ -18,7 +18,7 @@ const Portfolio = ({
       <img
         src={image}
         alt="profile"
-        className="h-64 w-64 rounded-full border-yellow-600 border-2"
+        className="h-48 w-48 rounded-full border-yellow-600 border-2"
       />
       <div
         className={`flex flex-col gap-4 text-center md:text-left ${

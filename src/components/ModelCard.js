@@ -14,7 +14,7 @@ const ModelCard = ({
   return (
     <div className="py-8 rounded-lg bg-white text-gray-900 px-16">
       <div
-        className={`flex flex-col gap-4 ${
+        className={`flex flex-col gap-4 justify-center items-center ${
           isLanding ? "flex-col-reverse" : ""
         }`}>
         <h3 className="font-semibold text-xl text-center">{name}</h3>
