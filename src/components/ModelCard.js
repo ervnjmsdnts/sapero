@@ -21,7 +21,7 @@ const ModelCard = ({
         <img src={image} alt="car" className="w-64 h-40" />
         {!isLanding && (
           <>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between w-full">
               <h4 className="text-lg font-medium">{type}</h4>
               <p className="bg-green-600 text-white text-sm py-1 px-2 font-semibold rounded-full">
                 Php {rate.toLocaleString("en-US")}.00/day
@@ -33,7 +33,7 @@ const ModelCard = ({
             </div>
           </>
         )}
-        <div className="flex flex-col gap-2 text-white">
+        <div className="flex w-full flex-col gap-2 text-white">
           {!isUse && (
             <>
               <Link to={`/rent/${_id}`}>

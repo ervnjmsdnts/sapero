@@ -21,7 +21,9 @@ const profiles = [
       "https://github.com/Antonettee",
       "https://www.facebook.com/AntonetteTheBoss",
     ],
-    description: "Lorem ipsum",
+    description:
+      "I'm an aspiring Full-Stack Web Developer seeking to gain knowledge and improve my skills.",
+    portfolioLink: "https://antonettee.github.io/Portfolio-Website/",
   },
   {
     isRight: true,
@@ -30,7 +32,7 @@ const profiles = [
     lastName: "Rosillo",
     urls: [
       "https://www.linkedin.com/in/wayne-jaspher-rosillo-788119246/",
-      "https://github.com",
+      "https://github.com/naofumish02",
       "https://www.facebook.com/waynot02",
     ],
     description:
@@ -48,7 +50,7 @@ const profiles = [
       "https://www.facebook.com/charlene.saez.3",
     ],
     description:
-      "Lorem ipsum hfiuewahfieouw fheowiapuhfeiuwao hfiouwea iuehowa fheiuwoa hfiuweoa hfiuweoah fiuoweah iouwa hfiuowea hfeiwoa hoaei",
+      "I am a Full-Stack Web Developer | UI/UX Designer exploring the technical world where I enhance my skills.",
   },
 ];
 
@@ -67,7 +69,7 @@ const Contact = () => {
           email,
           to_name: "Kodego Bootcamp",
           subject: "Contact Form",
-          message: message,
+          message,
         };
 
         await emailjs.send(
